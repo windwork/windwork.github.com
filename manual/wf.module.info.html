@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>模块配置</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="res/style.css" />
+<body>
+<h1>模块配置</h1>
+<p>模块配置保存在模块文件夹中，文件名为 info.php</p>
+<h2>示例：</h2>
+<pre><code>&lt;?php
+// src/module/demo/info.php
+return [
+    'name'         =&gt; '演示模块',       // 模块名称
+    'description'  =&gt; '演示模块的简介', // 模块简介
+    'homepage'     =&gt; 'http://windwork.org',  // 模块官网网址
+    'license'      =&gt; 'MIT',
+
+    // 作者，非必须
+    'authors'      =&gt; [
+                          [
+                              'name' =&gt; 'CM',  // 作者姓名/昵称，必须
+                              'email' =&gt; 'my@email.com', // 作者邮箱，非必须
+                              'homepage' =&gt; 'http://windwork.org', // 作者主页，非必须
+                          ]
+                      ],
+    'version'      =&gt; '1.0', // 模块版本
+    'package'      =&gt; 'option', // 模块分组，core）核心模块；option）可选模块；other）其它模块，非官方开发者提供的模块选择该选项
+
+    'require' =&gt; [
+        'wf' =&gt; '&gt;=1.0', // wf开发框架版本要求
+    ],
+];
+</code></pre>
+<h2>选项说明</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">选项</th>
+<th style="text-align: center;">类型</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块名称</td>
+</tr>
+<tr>
+<td style="text-align: center;">description</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块简介</td>
+</tr>
+<tr>
+<td style="text-align: center;">homepage</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块主页网址，如：<a href="http://windwork.org/">http://windwork.org/</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">license</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块使用协议，如：MIT、BSD、NewBSD、GPL等</td>
+</tr>
+<tr>
+<td style="text-align: center;">version</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块版本号</td>
+</tr>
+<tr>
+<td style="text-align: center;">package</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">模块分组，core）核心模块；option）可选模块；other）其它模块，非官方开发者提供的模块选择该选项</td>
+</tr>
+<tr>
+<td style="text-align: center;">authors</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">模块作者信息，更详细的说明见后面</td>
+</tr>
+<tr>
+<td style="text-align: center;">require</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">依赖模块，更详细的说明见后面</td>
+</tr>
+</tbody>
+</table>
+<h3>作者信息</h3>
+<p>非必须，可以有一个或多个作者</p>
+<pre><code>'authors' =&gt; [
+    [
+        'name' =&gt; '作者1',  // 作者姓名/昵称，必须
+        'email' =&gt; 'my@email.com', // 作者邮箱，非必须
+        'homepage' =&gt; 'http://windwork.org', // 作者主页，非必须
+    ],
+    [
+        'name' =&gt; '作者2',
+        'email' =&gt; 'my@email.com',
+        'homepage' =&gt; 'http://windwork.org',
+    ],
+]</code></pre>
+<h3>依赖信息</h3>
+<p>模块依赖信息，非必须。
+可设置模块所依赖的PHP版本，windwork框架版本、其他模块版本。</p>
+<p>依赖版本值大小比较可以是&gt;、&gt;=、&lt;、&lt;=，
+依赖版本范围值“版本A~版本B”表示依赖值为从版本A到版本B，比如：2.0~3.2表示&gt;=2.0 并且 &lt;= 3.2</p>
+<pre><code>'require' =&gt; [
+    'wf'      =&gt; '&gt;=1.0', // wf开发框架版本要求
+    'php'     =&gt; '&gt;=7.0',  // PHP版本要求，必须大于或等于windwork开发框架所需的PHP版本（5.5.0）
+    'article' =&gt; '0.1~2.1', // 依赖article模块并只兼容从0.1.x到2.1.x的article模块。
+],</code></pre>
+</body>
+</html>
