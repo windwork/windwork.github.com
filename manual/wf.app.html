@@ -8,15 +8,15 @@
 <h1>应用程序类</h1>
 <p>负责初始化系统运行环境并执行应用程序，类自动加载实现，获取请求、响应对象，协调处理用户请求与处理,跳转分发等工作。</p>
 <h2>1、执行应用程序</h2>
-<p>我们再index.php中通过调用\wf\core\App类来执行应用程序。</p>
-<pre><code>require_once 'src/wf/App.php';
-$app = \wf\core\App::getInstance();
+<p>我们再index.php中通过调用\wf\mvc\App类来执行应用程序。</p>
+<pre><code>require_once 'src/wf/mvc/App.php';
+$app = \wf\mvc\App::getInstance();
 // 执行应用程序
 $app-&gt;dispatch(); </code></pre>
 <h2>2、程序执行流程</h2>
 <p><img src="res/images/appflow.jpg" alt="程序执行流程" />  </p>
 <h2>3、应用程序跳转分发</h2>
-<p>\wf\core\App类提供接口支持站内页面请求转移到其它的控制器Acton（调用站内其他控制器的动作）</p>
+<p>\wf\mvc\App类提供接口支持站内页面请求转移到其它的控制器Acton（调用站内其他控制器的动作）</p>
 <pre><code>使用：
 $this-&gt;dispatch("$mod.$ctl.$act/$id/$other");
 或
@@ -28,9 +28,9 @@ $this-&gt;dispatch(array(
     'args' =&gt; array(),
 ));</code></pre>
 <h2>4、获取请求对象</h2>
-<pre><code>\wf\core\App::getInstance()-&gt;getRequest();</code></pre>
+<pre><code>\wf\mvc\App::getInstance()-&gt;getRequest();</code></pre>
 <h2>5、获取响应对象</h2>
-<pre><code>\wf\core\App::getInstance()-&gt;getResponse();</code></pre>
+<pre><code>\wf\mvc\App::getInstance()-&gt;getResponse();</code></pre>
 <p><a name="autoload"></a></p>
 <h2>6、自动加载类 </h2>
 <p>Windwork实现自动加载类的功能，在系统运行时，根据类名自动加载src/wf和src/module目录下的类文件。</p>

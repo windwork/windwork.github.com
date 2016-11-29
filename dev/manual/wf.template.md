@@ -15,18 +15,21 @@
 
 1、使用模板
 ------------------
-**模板变量赋值：**
+在控制器中使用 $this->view()调用模板实例。
+
+### 模板变量赋值：
 ```
 $this->view()->assign(‘变量’, “值”); // 变量名为字符串，值为任意数据类型。
 ```
 
-**显示模板：**
+### 显示模板：
 默认模板文件存放于 src/template/default 文件夹中，
 ```
 $this->view()->render($tpl = ‘模板文件’);  
 $this->view()->render(); // 默认 $tpl = "{$mod}/{$ctl}.{$act}.html"
 ```
-**使用模板案例**
+
+### 使用模板案例
 ```
 class AccountController extends \wf\mvc\Controller {
     public function loginAction() {
@@ -47,10 +50,20 @@ class AccountController extends \wf\mvc\Controller {
 ```
 # foreach
   {loop $arr $var}
+  ...
   {/loop}
+  # 解析后同 
+  <?php foreach($arr as $var) :?>
+  ...
+  <?php endforeach; ?>
 
   {loop $arr $k $v}
+  ...
   {/loop}
+  # 解析后同 
+  <?php foreach($arr as $k => $v) :?>
+  ...
+  <?php endforeach; ?>
 
 # if
   {if $a}
@@ -75,31 +88,61 @@ class AccountController extends \wf\mvc\Controller {
   {CONST_XX} // 模板中的常量约定全部为大写
 
 # 调用类、对象、函数并输出返回值
+  // 调用
   {fncName()}
+  {fncName($arg)}
   {$obj->method()}
   {\mymod\model\XXModel::fnc()}
 
-# URL
-  1)用url标签 {url $mod.$ctl.$act/param1/param2/paramk1:paramv1/...}
-  2)用url函数 {url("$mod.$ctl.$act/param1/param2/paramk1:paramv1/...")}
+  // 缩略图函数：
+  <img src="{thumb($uploadPath, $width, $height)}" />  // 通过上传文件路径，指定宽高
+  <img src="{thumb($uploadPath, $width, 0)}" />  // 高自动
+  <img src="{thumb($uploadPath, 0, $height)}" />  // 宽自动
 
-缩略图：
-  {thumb $uploadid, $width, $height} // 使用标签
-  {thumb($uploadid, $width, $height)}  // 使用函数
-  {thumb($uploadid, $width, 0)}  // 高自动
-  {thumb($uploadid, 0, $height)}  // 宽自动
+  // 用户头像地址函数：
+  <img src="{avatar($uid, $type)}" />  // type： big|medium|small|tiny
 
-用户头像地址：
-  {avatar($uid, $type)}  // type： big|medium|small|tiny
+# url 链接标签
+  1)使用url标签 {url $mod.$ctl.$act/param1/param2/paramk1:paramv1/...}
+  2)使用url函数 {url("$mod.$ctl.$act/param1/param2/paramk1:paramv1/...")}
 
-语言变量：
+
+# lang 语言标签：
   {lang xxx}
 
-执行代码段：
+# 执行代码段：
 1）{#任意PHP代码段...#}
 2）<?php php代码 ?>
 
-模板标签注释
+# static 不解析内容标签 
+{static}
+不解析的内容...
+{/static}
+
+# 模板标签注释
 <!--{模板标签}--> 
 模板解析时将去掉模板标签两边的html注释变成 {模板标签}
+
+```
+
+注：
+--------
+{lang xx}与 {lang('xx')}的区别：
+- **{lang xx}** 被模板引擎直接解析为语言变量值，lang标签后面不能是变量；
+- **{lang('xx')}** 被模板引擎解析为函数调用，lang()参数可以是变量；
+
+如：
+
+```
+$lang = ['name' => '姓名'];
+
+// 模板中lang标签
+name: {lang name} 
+// 解析后模板代码为：
+name: 姓名
+
+// 模板中lang函数
+name: {lang('name')}
+// 解析后模板代码为：
+name: <?php echo lang('name')?>
 ```

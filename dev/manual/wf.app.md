@@ -4,10 +4,10 @@
 
 1、执行应用程序
 ---------------
-我们再index.php中通过调用\wf\core\App类来执行应用程序。
+我们再index.php中通过调用\wf\mvc\App类来执行应用程序。
 ```
-require_once 'src/wf/App.php';
-$app = \wf\core\App::getInstance();
+require_once 'src/wf/mvc/App.php';
+$app = \wf\mvc\App::getInstance();
 // 执行应用程序
 $app->dispatch(); 
 ```
@@ -18,7 +18,7 @@ $app->dispatch();
 
 3、应用程序跳转分发
 ----------------
-\wf\core\App类提供接口支持站内页面请求转移到其它的控制器Acton（调用站内其他控制器的动作）
+\wf\mvc\App类提供接口支持站内页面请求转移到其它的控制器Acton（调用站内其他控制器的动作）
 ```
 使用：
 $this->dispatch("$mod.$ctl.$act/$id/$other");
@@ -35,14 +35,14 @@ $this->dispatch(array(
 4、获取请求对象
 ----------------------
 ```
-\wf\core\App::getInstance()->getRequest();
+\wf\mvc\App::getInstance()->getRequest();
 ```
 
 
 5、获取响应对象
 -----------------
 ```
-\wf\core\App::getInstance()->getResponse();
+\wf\mvc\App::getInstance()->getResponse();
 ```
 <a name="autoload"></a>
 

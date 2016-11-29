@@ -10,7 +10,7 @@ hook_enabled => 1
 ```
 设置钩子
 ------------------
-在src/config/hoocks.php设置钩子
+在src/config/hooks.php设置钩子
 
 钩子业务逻辑实现
 ------------------
@@ -75,12 +75,16 @@ class AclHook implements \wf\IHook {
  * **8、before_exit**   
    程序执行完后，结束执行前触发的钩
 
+ * **9、after_new_view**
+   初始化view时
+
 自定义挂钩点
 --------------
 你也可以在自己开发的模块控制器中加入挂钩点
 1、先在你的业务代码中加入挂钩点
 ```
-\wf\Hook::call('my_hook_call_id'); // my_hook_call_id 为挂载点id
+$hookObj = \wf\mvc\App::getInstance()->getHook();
+$hookObj->call('my_hook_call_id'); // my_hook_call_id 为挂载点id
 ```
 
 2、然后在配置问价中加入钩子调用类

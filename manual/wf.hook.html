@@ -11,7 +11,7 @@
 <p>在 src/config/config.php 中启用钩子</p>
 <pre><code>hook_enabled =&gt; 1</code></pre>
 <h2>设置钩子</h2>
-<p>在src/config/hoocks.php设置钩子</p>
+<p>在src/config/hooks.php设置钩子</p>
 <h2>钩子业务逻辑实现</h2>
 <p>钩子类保存在 &quot;src/module/{$mod}/hook/&quot; 文件夹；
 钩子必须实现wf\IHook类，钩子管理器将执行钩子实现类中的execute方法。</p>
@@ -71,13 +71,18 @@ action执行后触发的钩子</p>
 <p><strong>7、before_output</strong><br />
 内容输出前触发的钩子，可对输出内容进行处理过滤</p>
 </li>
-<li><strong>8、before_exit</strong><br />
-程序执行完后，结束执行前触发的钩</li>
+<li>
+<p><strong>8、before_exit</strong><br />
+程序执行完后，结束执行前触发的钩</p>
+</li>
+<li><strong>9、after_new_view</strong>
+初始化view时</li>
 </ul>
 <h2>自定义挂钩点</h2>
 <p>你也可以在自己开发的模块控制器中加入挂钩点
 1、先在你的业务代码中加入挂钩点</p>
-<pre><code>\wf\Hook::call('my_hook_call_id'); // my_hook_call_id 为挂载点id</code></pre>
+<pre><code>$hookObj = \wf\mvc\App::getInstance()-&gt;getHook();
+$hookObj-&gt;call('my_hook_call_id'); // my_hook_call_id 为挂载点id</code></pre>
 <p>2、然后在配置问价中加入钩子调用类</p>
 <pre><code>  'my_hook_call_id' =&gt; {
        '\\module\\mymod\\hook\\MyHook',  // 钩子类名

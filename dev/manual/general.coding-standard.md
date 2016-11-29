@@ -41,8 +41,8 @@ PHP文件名与其中的类名后加上.php构成。
 ```
 src/wf/App.php
 src/wf/Config.php
-src/modules/user/controller/AccountController.php
-src/modules/system/controller/admin/NavController.php
+src/module/user/controller/AccountController.php
+src/module/system/controller/admin/NavController.php
 ```
 
 ### 2.4、函数和方法

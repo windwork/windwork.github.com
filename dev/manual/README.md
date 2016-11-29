@@ -7,9 +7,12 @@ Windwork是一个开源的轻量级PHP Web开发框架。
 
 环境要求
 -------------------
-* PHP5.3+ (需启用模块：mysql或pdo_mysql、gd2，打开allow_url_fopen)
+* PHP5.5+ (需启用模块：mysql或pdo_mysql、gd2，打开allow_url_fopen)
 * MySQL 5.0+
 * 建议Web服务器启用 URLRewrite
+* 客户端要求：
+  * 管理后台 IE9+/支持HTML5的浏览器
+  * 前台 IE8+
 
 设计目标
 -----------------

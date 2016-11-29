@@ -17,7 +17,7 @@ Windwork是一个开源的轻量级PHP Web开发框架。
     * [路由（router）](wf.mvc.router.html)   
     * [控制器](wf.mvc.controller.html)   
     * [模型](wf.mvc.model.html)   
-    * [视图](wf.mvc.template.html)  
+    * [视图](wf.template.html)  
     * [消息传递](wf.mvc.message.html)
     * [Restful](wf.mvc.restful.html)
 * [权限控制](general.acl.html)
